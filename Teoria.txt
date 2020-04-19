@@ -1,0 +1,35 @@
+Closure
+
+La forma en que una función puede acceder a datos a través del contexto, no de forma explícita.
+
+¿Qué es Hooks?
+
+El 80 % de la magia de react ocurre en React.Component. (Los métodos básicos de ComponentDidMount, etc)
+
+No obstante, React no permite utilizarlo en los functional components. A menos que usemos Hooks.
+
+Literalmente, hackearon la clase Component, tomaron las cosas copadas y las expusieron para que Functional Components puedan utilizarlas. Esto son los hooks.
+
+Con eso, podemos desarrollar una app que hace lo mismo que todolist de manera más legible, más escalable y, sobre todo, en muchas menos líneas de código.
+
+Hooks utiliza el paradigma de programación funcional.
+Este paradigma trata las funciones como datos. A una función podemos pasarle otras funciones (por eso se trabaja con funciones puras).
+
+¿Cómo usamos Hooks?
+
+En un functional component, que ahora será App.js, importamos {useState}
+
+Luego lo desestructuramos antes del return.
+Su destructuración siempre devuelve una tupla:
+- getter --> el estado inicial (nos da datos)
+- setter --> con el que vamos a modificar (modifica los datos)
+
+    let [state, setState] = useState('titulo')
+
+En la función en sí (useState), vamos a pasarle un parámetro, que será el contenido del getter.
+
+Luego, establecemos un evento (como onClick), al que le agregamos la función setState('parámetro'). Cuando yo hago click, ejecuta el evento onclick, llama al setter y ejecuta ese valor. 
+
+Podemos usar useState cuantas veces querramos, y podemos llamar su getter y setter como se nos cante.
+
+
