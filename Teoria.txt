@@ -30,6 +30,12 @@ En la función en sí (useState), vamos a pasarle un parámetro, que será el co
 
 Luego, establecemos un evento (como onClick), al que le agregamos la función setState('parámetro'). Cuando yo hago click, ejecuta el evento onclick, llama al setter y ejecuta ese valor. 
 
-Podemos usar useState cuantas veces querramos, y podemos llamar su getter y setter como se nos cante.
+Podemos usar useState cuantas veces queramos, y podemos llamar su getter y setter como se nos cante.
+
+El getter va a ser el estado inicial que decidamos. Puede estar vacío, ser una string y hasta ser un objeto.
+En caso de ser un objeto, deberemos llamar a las propiedades del objeto para los valores y demáses.
+IMPORTANTE: Si es vacío, marcarlo como tal ('', [''], {''} ) para que no quede como undefined.
+
+Hooks permite manejar varias tuplas a la vez. No obstante, conviene manejar un useState a la vez y tener varios manejadores de estado externos a los componentes. Los proyectos levantan un hooks (hecho manualmente) con el estado de la aplicación y si hace falta, un hook local para ese componente.
 
 
