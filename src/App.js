@@ -11,10 +11,6 @@ const App = () => {
   const [initialField, editField] = useState('')
 
   useEffect(() => {
-    console.log('nothing')
-  })
-
-  useEffect(() => {
     console.log('levanto storage')
     const persistedState = window.localStorage.getItem('todo-state')
     setTodoList([ ...(JSON.parse(persistedState) || '')])
@@ -24,7 +20,6 @@ const App = () => {
     console.log('guardo en el storage')
     window.localStorage.setItem('todo-state', JSON.stringify(todoList))
   }, [todoList])
-
 
   const toggleModal = () => toggleModalState(!isModalOpen)
 

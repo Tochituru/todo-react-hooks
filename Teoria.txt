@@ -88,7 +88,16 @@ Levantar del storage nunca se volvió a disparar porque es el didmount de toda l
 
 Guardar en storage (con todolist como segundo parámetro), se disparó dos veces. La primera cuando se didmount, y cuando hubo un cambio en el estado.
 
+No hace falta hacer las tres validaciones, sino que depende de qué vamos a hacer.
 
+Por lo general, vamos a usar solo el guardo.
 
+useEffect nos va a permitir hacer funciones en el ciclo de vida.
 
 useContext permite exponer un custom-hook para que varios componentes lo usen.
+
+Las funciones podemos guardarlas en otro lugar incluso.
+
+Esas funciones vamos a tener que agregarle otros parámetros, pero podremos extraerlas (algo que componentes no nos dejan).
+
+Si no están relacionadas con la vista, conviene llevarlas a helpers. (son funciones puras, operaciones, superagnósticas).
