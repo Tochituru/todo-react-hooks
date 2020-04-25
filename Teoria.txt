@@ -60,4 +60,35 @@ El segundo parámetro de useEffect es una lista. En este caso, será todoList. A
 
 Esto, a nivel de rendimiento, es la gloria. 
 
+Otra cosa que tiene el useEffect es la opción de return.
 
+La función se va a ejecutar cuando termine de cargar y cuando se hagan cambios en el estado al cual me suscribí.
+Además, la función tiene un return que devuelve una función. ¿Cuándo se ejecuta? Cuando lo que estamos escuchando es desmontado. React monta un componente en pantalla y lo desmonta en un momento dado. Al navegar en el router, tenemos un container que es la home y otro container que es quienes somos. React desmonta la home y monta quienes somos (cuando navegamos sla páinga). Ese ejercicio de desmontar ejecuta el evento "me fui" y ejecuta la función que se encuentra dentro de return.
+¿Por qué me interesaría hacer algo cuando se va de mi componente? Porque una tarea muy común es suscribirnos a eventos, como por ejemplo, scroll, y permiten que sucedan cosas cuando scrolleamos (que se vea más contenido a medida que hacemos scroll). Esa función lo que hace es fijarse cuántos pixeles avanzó para determinar qué queremos hacer. 
+
+Suscribirse a esos estados tiene un costo computacional importante (scroll funca todo el tiempo). Si nos suscribimos a esa clase de eventos y no nos desuscribimos, terminamos rompiendo la compu del usuario. Porque la escucha queda activada.
+
+Es importantísimo desuscribirse de los eventos al desmontar un componente. En el caso de useEffect, está dentro del return de la primera función.
+En el casoe de componentes, está dentro de componentWillUnmount(){},
+
+Entonces, useEffect nos permite abreviar al código. Podemos usarlo la cantidad de veces que queramos. Puede haber uno suscrito a nada, uno suscrito al todolist, unopara que se ejecute solamente cuando se desmonte nuestro componente.
+La desventaja es que, al ser tan abstracto y manejar tantas distintas situaciones, es que hay que probarlo mucho hasta poder resolverlo. Porque no es tan legible de entrada (es mera sintaxis).
+
+Primero, lo que vamos a hacer es suscribirnos al todolist, y hacer la presistencia.
+EL JSON va a guardar el estado armado o la lista vacía.
+Es importante recordar que va a romper la compu de una, porque le estoy diciendo: cada vez que cambia la lista, haz esto (entonces infinite loop).
+
+Si en el segundo parámetro no ponemos nada, se dispara cuando renderiza y cada vez que cambia el estado. si pones los corchetes con un estado (p. ej. todolist), se dispara cuando se renderiza y cuando se cambia ese estado en particular. Si pones los corchetes vacíos, es un punto medio. Lo corta en el didmount.
+
+Todos los useEffect se disparan con el ComponentDidMount, por lo que los tres useEffect que estamos usando se disparan al menos una vez.
+
+Si no tengo un parámetro en la segunda posición, se va a dispara cada vez que cambia el estado (por ejemplo, cuando escribo en el input).
+
+Levantar del storage nunca se volvió a disparar porque es el didmount de toda la vida. Solo se disparó cuando se levantó. Tiene una lista y está esperando que le digas qué lista tiene que escuchar. COmo está vacía, no se vuelve a activar. Es el comportamiento esperado y buscamos que no se active infinitamente.
+
+Guardar en storage (con todolist como segundo parámetro), se disparó dos veces. La primera cuando se didmount, y cuando hubo un cambio en el estado.
+
+
+
+
+useContext permite exponer un custom-hook para que varios componentes lo usen.

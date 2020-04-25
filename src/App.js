@@ -8,13 +8,23 @@ const App = () => {
   let [taskValue, setTaskValue] = useState('')
   const [todoList, setTodoList] = useState([])
   const [isModalOpen, toggleModalState] = useState(false)
-  let [initialField, editField] = useState('')
+  const [initialField, editField] = useState('')
 
+  useEffect(() => {
+    console.log('nothing')
+  })
 
-  const pending = todoList.filter(e => e.status === 'pending')
-  const complete = todoList.filter(e => e.status === 'completed')
+  useEffect(() => {
+    console.log('levanto storage')
+    const persistedState = window.localStorage.getItem('todo-state')
+    setTodoList([ ...(JSON.parse(persistedState) || '')])
+  }, [])
 
-  useEffect(() => console.log('ulas'), [todoList])
+  useEffect(() => {
+    console.log('guardo en el storage')
+    window.localStorage.setItem('todo-state', JSON.stringify(todoList))
+  }, [todoList])
+
 
   const toggleModal = () => toggleModalState(!isModalOpen)
 
@@ -42,6 +52,8 @@ const App = () => {
   const openEditModal = (id) => {
     toggleModal()
   }
+  const pending = todoList.filter(e => e.status === 'pending')
+  const complete = todoList.filter(e => e.status === 'completed')
 
   return (
     <Container>
