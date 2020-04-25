@@ -18,6 +18,7 @@ Este paradigma trata las funciones como datos. A una función podemos pasarle ot
 ¿Cómo usamos Hooks?
 
 En un functional component, que ahora será App.js, importamos {useState}
+Es una función.
 
 Luego lo desestructuramos antes del return.
 Su destructuración siempre devuelve una tupla:
@@ -37,5 +38,26 @@ En caso de ser un objeto, deberemos llamar a las propiedades del objeto para los
 IMPORTANTE: Si es vacío, marcarlo como tal ('', [''], {''} ) para que no quede como undefined.
 
 Hooks permite manejar varias tuplas a la vez. No obstante, conviene manejar un useState a la vez y tener varios manejadores de estado externos a los componentes. Los proyectos levantan un hooks (hecho manualmente) con el estado de la aplicación y si hace falta, un hook local para ese componente.
+
+{useEffect}
+Es una función que permite hacer un montón de cosas. Depende de nosotras determinar cómo funciona.
+Casi todas las cosas que arrancan con "use" son hooks.
+
+Es una función que recibe al menos dos parámetros. 
+El primero es una función propiamente dicha.
+Primero, probamos un console log.
+Aparece al principio de todo porque es el equivalente de ComponentDidMount. 
+El comportamiento default es tomar el contenido del primer parámetro (en este caso, el consolelog) y ejecutarlo cuando se cumple lo que conocemos como ComponentDidMount.
+Se sigue disparando cada vez que hago una modificación en el estado. Combina ComponentDidMount con ComponentDidUpdate.
+
+Si tenemos operaciones costosas en cuanto a algoritmos, no queremos que se repita tantas veces.
+
+CUando usábamos ComponentDidUpdate, hicimos que se persista todo el contenido, sin ninguna clase de fondo.
+
+ComponentDidUpdate normalmente recibe dos parámetros: perviousState (el estado anterior, que podría levantar). No obstante, sigue tomando un montón de memoria.
+
+El segundo parámetro de useEffect es una lista. En este caso, será todoList. Así, le decimos que quiero que se ejecute una vez cuando se ejecuta la aplicaicón y quiero que te suscribas (estar pendiente de algo) al estado y cuando sea modificado, ejecuta lo que tengo arriba (el primer parámetro).
+
+Esto, a nivel de rendimiento, es la gloria. 
 
 
